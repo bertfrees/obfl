@@ -10,6 +10,7 @@
       <ref name="page-number"/>
       <ref name="external-reference"/>
       <ref name="marker-reference"/>
+      <ref name="compound-marker-reference"/>
       <ref name="span"/>
       <ref name="style"/>
     </choice>
@@ -707,6 +708,7 @@
       <zeroOrMore>
         <choice>
           <ref name="marker-reference-in-field"/>
+          <ref name="compound-marker-reference-in-field"/>
           <ref name="string"/>
           <ref name="current-page"/>
           <ref name="evaluate-in-field"/>
@@ -794,6 +796,20 @@
         <data type="NMTOKEN"/>
       </attribute>
     </optional>
+  </define>
+  <define name="compound-marker-reference">
+    <element name="compound-marker-reference">
+      <oneOrMore>
+        <ref name="marker-reference"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="compound-marker-reference-in-field">
+    <element name="compound-marker-reference">
+      <oneOrMore>
+        <ref name="marker-reference-in-field"/>
+      </oneOrMore>
+    </element>
   </define>
   <define name="string">
     <element name="string">

@@ -719,7 +719,7 @@ area.</p>
     </dd>
   <dt>Content Model</dt>
     <dd>block, text(), leader, marker, br, evaluate, page-number, external-reference,
-      marker-reference, span, style [0 or more]</dd>
+      marker-reference, compound-marker-reference, span, style [0 or more]</dd>
 </dl>
 </div>
 
@@ -741,7 +741,7 @@ area.</p>
     </dd>
   <dt>Content Model</dt>
     <dd>block, text(), leader, marker, br, evaluate, page-number, external-reference,
-      marker-reference, span, style [0 or more]</dd>
+      marker-reference, compound-marker-reference, span, style [0 or more]</dd>
 </dl>
 </div>
 
@@ -912,8 +912,8 @@ markers are present on the indicated row.</p>
       </dl>
     </dd>
   <dt>Content Model</dt>
-    <dd class="markup">marker-reference, string, current-page, external-reference, evaluate [0 or
-      more]</dd>
+    <dd class="markup">marker-reference, compound-marker-reference, string, current-page,
+      external-reference, evaluate [0 or more]</dd>
 </dl>
 </div>
 
@@ -926,8 +926,8 @@ element. If no reference is found, the empty string is returned.</p>
 <div class="sidebar">
 <dl>
   <dt>Usage</dt>
-    <dd class="markup">before, after, field, toc-entry, toc-entry-on-resumed,
-    block, td, item, style</dd>
+    <dd class="markup">compound-marker-reference, before, after, field, toc-entry,
+      toc-entry-on-resumed, block, td, item, style</dd>
   <dt>Attributes</dt>
     <dd><dl>
         <dt>marker [required]</dt>
@@ -983,6 +983,40 @@ the search could eventually hit an existing page. Depending on the scope,
   <dt>document</dt>
     <dd>start the search on the first existing page in the search direction</dd>
 </dl>
+
+<h4 id="L690" class="include">compound-marker-reference</h4>
+
+<p>The compound-marker-reference element evaluates to the first contained marker-reference element
+that resolves to a value. If none of the marker-reference elements resolve to a value, the empty
+string is returned.</p>
+
+<p>The compound-marker-reference element is required to do advanced marker lookups that can not be
+accomplished with a single marker-reference.</p>
+
+<div class="sidebar">
+<dl>
+  <dt>Usage</dt>
+    <dd class="markup">before, after, field, toc-entry, toc-entry-on-resumed, block,
+      block-interrupted, block-resumed, td, item, style</dd>
+  <dt>Content Model</dt>
+    <dd class="markup">marker-reference [1 or more]</dd>
+</dl>
+</div>
+
+<h5 id="L693">Example</h5>
+
+<p>To find the first marker on the current page, or the marker value in effect at the beginning of
+the page if the page does not contain any markers, the following compound-marker-reference could be
+used:</p>
+
+<div class="example">
+<pre>
+	&lt;compound-marker-reference>
+		&lt;marker-reference marker="print-page" direction="forward" scope="page"/>
+		&lt;marker-reference marker="print-page" direction="backward" scope="document"/>
+	&lt;/compound-marker-reference>
+</pre>
+</div>
 
 <h4 id="L696" class="include">string</h4>
 
@@ -1252,7 +1286,7 @@ should be excluded entirely.</p>
     </dd>
   <dt>Content Model</dt>
     <dd>text(), leader, marker, br, evaluate, page-number, external-reference, marker-reference,
-      span, style, anchor, block, table, xml-data [0 or more]</dd>
+      compound-marker-reference, span, style, anchor, block, table, xml-data [0 or more]</dd>
 </dl>
 </div>
 
@@ -1553,7 +1587,7 @@ emphasis or strong.</p>
     </dd>
   <dt>Content Model</dt>
     <dd>text(), style, marker, br, anchor, evaluate, page-number, external-reference,
-    marker-reference [0 or more]</dd>
+    marker-reference, compound-marker-reference [0 or more]</dd>
 </dl>
 </div>
 
@@ -1727,8 +1761,8 @@ table spans.</p>
         and <a href="#padding-atts">Padding</a> attributes groups.</p>
     </dd>
   <dt>Content Model</dt>
-  <dd>text(), leader, marker, br, evaluate, page-number, external-reference, marker-reference, span,
-  style, anchor, block, xml-data [0 or more]</dd>
+  <dd>text(), leader, marker, br, evaluate, page-number, external-reference, marker-reference,
+    compound-marker-reference, span, style, anchor, block, xml-data [0 or more]</dd>
 </dl>
 </div>
 
@@ -1797,7 +1831,7 @@ volume. In a document-ranged toc-sequence, the content will always be rendered.<
     </dd>
   <dt>Content Model</dt>
     <dd>text(), leader, marker, br, evaluate, page-number, external-reference, marker-reference,
-      span, style [0 or more]</dd>
+      compound-marker-reference, span, style [0 or more]</dd>
 </dl>
 </div>
 
@@ -1842,7 +1876,7 @@ more than once. The range consists of two block ids (the latter is optional).</p
     </dd>
   <dt>Content Model</dt>
     <dd>text(), leader, marker, br, evaluate, page-number, external-reference, marker-reference,
-      span, style [0 or more]</dd>
+      compound-marker-reference, span, style [0 or more]</dd>
 </dl>
 </div>
 
@@ -2206,7 +2240,7 @@ volume's body of pages.</p>
     <dd>volume-transition</dd>
     <dt>Content Model</dt>
     <dd>text(), leader, marker, br, evaluate, page-number, external-reference, marker-reference,
-    span, style [0 or more]</dd>
+      compound-marker-reference,  span, style [0 or more]</dd>
   </dl>
 </div>
 
@@ -2222,7 +2256,7 @@ volume's body of pages.</p>
       <dd>volume-transition</dd>
       <dt>Content Model</dt>
       <dd>text(), leader, marker, br, evaluate, page-number, external-reference, marker-reference,
-      span, style [0 or more]</dd>
+        compound-marker-reference, span, style [0 or more]</dd>
     </dl>
   </div>
 
@@ -2329,7 +2363,7 @@ flow. The behavior of this element is similar to the toc-entry element.</p>
     </dd>
   <dt>Content Model</dt>
     <dd>block, text(), leader, marker, br, evaluate, page-number, external-reference,
-      marker-reference, span, style [0 or more]</dd>
+      marker-reference, compound-marker-reference, span, style [0 or more]</dd>
 </dl>
 </div>
 
