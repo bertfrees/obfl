@@ -23,6 +23,29 @@
       <attribute name="row-spacing"/>
     </optional>
   </define>
+  <define name="translate">
+    <optional>
+      <attribute name="translate">
+        <choice>
+          <value></value>
+          <value>pre-translated</value>
+          <value>uncontracted</value>
+          <value>contracted</value>
+          <data type="string">
+            <param name="pattern">grade:[1-9]+(\.[0-9]+)?</param>
+          </data>
+          <value>6-dot</value>
+          <value>8-dot</value>
+          <data type="token">
+            <param name="pattern">(contracted|uncontracted)(/grade:[1-9]+(\.[0-9]+)?)?(/([68]-dot))?</param>
+          </data>
+          <data type="token">
+            <param name="pattern">grade:[1-9]+(\.[0-9]+)?(/([68]-dot))?</param>
+          </data>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
   <!-- hyphenate, true to hyphenate, false otherwise -->
   <define name="textAtts">
     <optional>
@@ -39,18 +62,7 @@
         </choice>
       </attribute>
     </optional>
-    <optional>
-      <attribute name="translate">
-        <choice>
-          <value></value>
-          <value>pre-translated</value>
-          <value>grade0</value>
-          <value>grade1</value>
-          <value>grade2</value>
-          <value>grade3</value>
-        </choice>
-      </attribute>
-    </optional>
+    <ref name="translate"/>
   </define>
   <define name="name-id">
     <attribute name="name">
@@ -550,18 +562,7 @@
         </choice>
       </attribute>
     </optional>
-    <optional>
-      <attribute name="translate">
-        <choice>
-          <value></value>
-          <value>pre-translated</value>
-          <value>grade0</value>
-          <value>grade1</value>
-          <value>grade2</value>
-          <value>grade3</value>
-        </choice>
-      </attribute>
-    </optional>
+    <ref name="translate"/>
   </define>
   <!---->
   <define name="meta">

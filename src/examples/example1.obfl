@@ -144,6 +144,10 @@
 			<block>This heading is so important, that it has to start on a new page.</block>
 			<block margin-top="2" margin-bottom="1">New line</block>
 			<block>You can break a line<br/>wherever<br/>you<br/>want.</block>
+			<block translate=""/>
+			<block translate="grade:1.5"/>
+			<block translate="uncontracted/6-dot"/>
+			<block translate="grade:2/8-dot"/>
 			<!-- 
 			<float-item name="note1">
 				<block text-indent="3" margin-top="2">1<leader position="3"/>This is a note. It will be placed at the bottom of the page.</block>
